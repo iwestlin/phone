@@ -49,7 +49,7 @@ function find (phoneOrigin) {
       var phoneType = buf.readInt8(indexOffset + pos * 9 + 8, 1)
       var content = buf.slice(infoOffset, infoOffset + 100)
       var endIdx = 0
-      while (endIdx < 100 && content[endIdx] !== '\n') {
+      while (endIdx < 100 && content[endIdx] !== 0) {
         endIdx++
       }
       return formatResult(phoneOrigin, phoneType, content.toString('utf8', 0, endIdx))
