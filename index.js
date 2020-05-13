@@ -34,15 +34,9 @@ function find (phoneOrigin) {
     var pos = ((right + left) / 2) | 0
     var index = buf.readInt32LE(indexOffset + pos * 9, 4)
     if (index < phone) {
-      if (left === pos) {
-        return formatResult(phoneOrigin, 0, null)
-      }
-      left = pos
+      left = pos + 1
     } else if (index > phone) {
-      if (right === pos) {
-        return formatResult(phoneOrigin, 0, null)
-      }
-      right = pos
+      right = pos - 1
     } else {
       // match 
       var infoOffset = buf.readInt32LE(indexOffset + pos * 9 + 4, 4)
